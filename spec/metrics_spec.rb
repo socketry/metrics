@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require 'traces/provider'
+require 'metrics/provider'
 
 class MyClass
 	def my_method(argument)
@@ -29,7 +29,8 @@ end
 
 Metrics::Provider(MyClass) do
 	def my_method(argument)
-		trace('my_method', attributes: {argument: argument}) {super}
+		metric_increment('called')
+		super
 	end
 end
 
@@ -38,10 +39,10 @@ RSpec.describe Metrics do
 		expect(Metrics::VERSION).not_to be nil
 	end
 
-	it "can invoke trace wrapper" do
+	it "can invoke metric wrapper" do
 		instance = MyClass.new
 		
-		expect(instance).to receive(:trace).and_call_original
+		expect(instance).to receive(:metric_increment).and_call_original
 		
 		instance.my_method(10)
 	end
