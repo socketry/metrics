@@ -1,19 +1,17 @@
-# Trace
+# Metrics
 
-As the author of many libraries which would benefit from tracing, there are few key priorities: (1) zero overhead if tracing is disabled, minimal overhead if enabled, and (2) a small and opinionated interface with standardised semantics. This gem provide such an interface.
-
-We implement a tracing interface which is largely consistent with the [W3C Trace Context Specification](https://github.com/w3c/trace-context).
+Capture metrics about code execution in a vendor agnostic way.
 
 [![Development Status](https://github.com/socketry/metrics/workflows/Development/badge.svg)](https://github.com/socketry/metrics/actions?workflow=Development)
 
 ## Installation
 
-    bundle add trace
+    bundle add metrics
 
 ## Usage
 
 ``` ruby
-require 'trace'
+require 'metrics'
 
 class MyClass
 	def my_method
@@ -21,23 +19,18 @@ class MyClass
 	end
 end
 
-# If tracing is disabled, this is a no-op.
+# If metrics are disabled, this is a no-op.
 Trace::Provider(MyClass) do
 	def my_method
-		attributes = {
-			'foo' => 'bar'
-		}
-		
-		trace('my_method', attributes: attributes) do
-			super
-		end
+		metric_increment('called')
+		super
 	end
 end
 
 MyClass.new.my_method
 ```
 
-If tracing is disabled, there is no overhead.
+If metrics are disabled, there is no overhead.
 
 ## Contributing
 
