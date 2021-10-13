@@ -24,6 +24,15 @@ require 'console'
 
 module Metrics
 	module Backend
+		module Register
+			def register_metric(name, type, attributes: nil, &block)
+			end
+		end
+		
+		def self.prepended(provider)
+			provider.extend(Register)
+		end
+		
 		private
 		
 		def metric_increment(name, amount = 1, attributes: nil)

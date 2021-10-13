@@ -33,7 +33,6 @@ module Metrics
 	if Metrics.const_defined?(:Backend)
 		def self.Provider(klass, &block)
 			klass.extend(Provider)
-			klass.prepend(Backend)
 			
 			provider = klass.metrics_provider
 			provider.prepend(Backend)

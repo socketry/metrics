@@ -10,6 +10,8 @@ Capture metrics about code execution in a vendor agnostic way.
 
 ## Usage
 
+### Push Metrics
+
 ``` ruby
 require 'metrics'
 
@@ -20,7 +22,9 @@ class MyClass
 end
 
 # If metrics are disabled, this is a no-op.
-Trace::Provider(MyClass) do
+Metrics::Provider(MyClass) do
+	metric_register('called', :counter, description: 'Number of times invoked.')
+	
 	def my_method
 		metric_increment('called')
 		super
@@ -29,8 +33,6 @@ end
 
 MyClass.new.my_method
 ```
-
-If metrics are disabled, there is no overhead.
 
 ## Contributing
 

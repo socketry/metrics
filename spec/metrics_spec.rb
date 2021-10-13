@@ -28,6 +28,8 @@ class MyClass
 end
 
 Metrics::Provider(MyClass) do
+	register_metric('called', :counter, description: 'Number of times invoked.')
+	
 	def my_method(argument)
 		metric_increment('called')
 		super
