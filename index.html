@@ -38,6 +38,27 @@
 <p>Please browse the <a href="source/index.html">source code index</a> or refer to the guides below.</p>
 
 
+</section><section id="push-metrics"><h3>Push Metrics</h3>
+<pre><code class="language-ruby">require 'metrics'
+
+class MyClass
+	def my_method
+		puts &quot;Hello World&quot;
+	end
+end
+
+# If metrics are disabled, this is a no-op.
+Metrics::Provider(MyClass) do
+	metric_register('called', :counter, description: 'Number of times invoked.')
+	
+	def my_method
+		metric_increment('called')
+		super
+	end
+end
+
+MyClass.new.my_method
+</code></pre>
 </section><section id="contributing"><h2>Contributing</h2>
 <p>We welcome contributions to this project.</p>
 <ol>
