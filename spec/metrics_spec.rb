@@ -28,10 +28,10 @@ class MyClass
 end
 
 Metrics::Provider(MyClass) do
-	register_metric('called', :counter, description: 'Number of times invoked.')
+	metric_register('called', :counter, description: 'Number of times invoked.')
 	
 	def my_method(argument)
-		metric_increment('called')
+		metric_adjust('called', 1)
 		super
 	end
 end
@@ -44,7 +44,7 @@ RSpec.describe Metrics do
 	it "can invoke metric wrapper" do
 		instance = MyClass.new
 		
-		expect(instance).to receive(:metric_increment).and_call_original
+		expect(instance).to receive(:metric_adjust).and_call_original
 		
 		instance.my_method(10)
 	end

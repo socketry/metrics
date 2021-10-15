@@ -25,7 +25,26 @@ require 'console'
 module Metrics
 	module Backend
 		module Register
-			def register_metric(name, type, attributes: nil, &block)
+			def metric_register(name, type, description: nil, unit: nil, &block)
+				unless name.is_a?(String)
+					raise ArgumentError, "Invalid name!"
+				end
+				
+				unless type.is_a?(Symbol)
+					raise ArgumentError, "Invalid type!"
+				end
+				
+				if description
+					unless description.is_a?(String)
+						raise ArgumentError, "Invalid description!"
+					end
+				end
+				
+				if unit
+					unless unit.is_a?(String)
+						raise ArgumentError, "Invalid unit!"
+					end
+				end
 			end
 		end
 		
@@ -35,13 +54,37 @@ module Metrics
 		
 		private
 		
-		def metric_increment(name, amount = 1, attributes: nil)
+		# Relative metric adjustment.
+		def metric_adjust(name, amount = 1, attributes: nil)
+			unless name.is_a?(String)
+				raise ArgumentError, "Invalid name!"
+			end
+			
+			unless amount.is_a?(Numeric)
+				raise ArgumentError, "Invalid amount!"
+			end
 		end
 		
-		def metric_decrement(name, amount = 1, attributes: nil)
+		# Absolute metric assignment.
+		def metric_count(name, value, attributes: nil)
+			unless name.is_a?(String)
+				raise ArgumentError, "Invalid name!"
+			end
+			
+			unless value.is_a?(Numeric)
+				raise ArgumentError, "Invalid value!"
+			end
 		end
 		
-		def metric_measure(name, amount = 1, attributes: nil)
+		# Relative metric measurement.
+		def metric_measure(name, value, attributes: nil)
+			unless name.is_a?(String)
+				raise ArgumentError, "Invalid name!"
+			end
+			
+			unless value.is_a?(Numeric)
+				raise ArgumentError, "Invalid value!"
+			end
 		end
 	end
 end

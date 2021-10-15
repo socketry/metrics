@@ -25,7 +25,7 @@ require 'console'
 module Metrics
 	module Backend
 		module Register
-			def register_metric(name, type, **options)
+			def metric_register(name, type, **options)
 				Console.logger.debug(self) {"Registering metric #{name} (#{type}): #{options}."}
 			end
 		end
@@ -36,15 +36,18 @@ module Metrics
 		
 		private
 		
-		def metric_increment(name, amount = 1, attributes: nil)
+		# Relative metric adjustment.
+		def metric_adjust(name, amount = 1, attributes: nil)
 			Console.logger.info(self, name, "+= #{amount}", attributes)
 		end
 		
-		def metric_decrement(name, amount = 1, attributes: nil)
-			Console.logger.info(self, name, "-= #{amount}", attributes)
+		# Absolute metric assignment.
+		def metric_count(name, value, attributes: nil)
+			Console.logger.info(self, name, "= #{amount}", attributes)
 		end
 		
-		def metric_measure(name, amount = 1, attributes: nil)
+		# Relative metric measurement.
+		def metric_measure(name, value, attributes: nil)
 			Console.logger.info(self, name, "<< #{amount}", attributes)
 		end
 	end
