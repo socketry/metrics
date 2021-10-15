@@ -23,8 +23,7 @@
 module Metrics
 	def self.require_backend(env = ENV)
 		if backend = env['METRICS_BACKEND']
-			path = File.join('backend', backend)
-			require_relative(path)
+			require(path)
 		end
 	end
 end
