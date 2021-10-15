@@ -21,20 +21,20 @@ jobs:
         
         experimental: [false]
         env:
-          - "METRICS_BACKEND=console"
+          - "METRICS_BACKEND=metrics/backend/console"
         
         include:
           - os: ubuntu
             ruby: truffleruby
-            env: "METRICS_BACKEND=test"
+            env: "METRICS_BACKEND=metrics/backend/test"
             experimental: true
           - os: ubuntu
             ruby: jruby
-            env: "METRICS_BACKEND=test"
+            env: "METRICS_BACKEND=metrics/backend/test"
             experimental: true
           - os: ubuntu
             ruby: head
-            env: "METRICS_BACKEND=test"
+            env: "METRICS_BACKEND=metrics/backend/test"
             experimental: true
     
     steps:
