@@ -4,45 +4,24 @@ Capture metrics about code execution in a vendor agnostic way.
 
 [![Development Status](https://github.com/socketry/metrics/workflows/Development/badge.svg)](https://github.com/socketry/metrics/actions?workflow=Development)
 
-## Installation
+## Features
 
-    bundle add metrics
+  - Zero-overhead if tracing is disabled and minimal overhead if enabled.
+  - Small opinionated interface with standardised semantics.
 
 ## Usage
 
-### Push Metrics
-
-``` ruby
-require 'metrics'
-
-class MyClass
-	def my_method
-		puts "Hello World"
-	end
-end
-
-# If metrics are disabled, this is a no-op.
-Metrics::Provider(MyClass) do
-	metric_register('called', :counter, description: 'Number of times invoked.')
-	
-	def my_method
-		metric_increment('called')
-		super
-	end
-end
-
-MyClass.new.my_method
-```
+Please see the [project documentation](https://socketry.github.io/metrics).
 
 ## Contributing
 
 We welcome contributions to this project.
 
-1.  Fork it
-2.  Create your feature branch (`git checkout -b my-new-feature`)
-3.  Commit your changes (`git commit -am 'Add some feature'`)
-4.  Push to the branch (`git push origin my-new-feature`)
-5.  Create new Pull Request
+1.  Fork it.
+2.  Create your feature branch (`git checkout -b my-new-feature`).
+3.  Commit your changes (`git commit -am 'Add some feature'`).
+4.  Push to the branch (`git push origin my-new-feature`).
+5.  Create new Pull Request.
 
 ## License
 

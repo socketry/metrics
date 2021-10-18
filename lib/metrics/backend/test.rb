@@ -24,67 +24,73 @@ require 'console'
 
 module Metrics
 	module Backend
-		module Register
-			def metric_register(name, type, description: nil, unit: nil, &block)
-				unless name.is_a?(String)
-					raise ArgumentError, "Invalid name!"
+		module Test
+			module Register
+				def metric_register(name, type, description: nil, unit: nil, &block)
+					unless name.is_a?(String)
+						raise ArgumentError, "Invalid name!"
+					end
+					
+					unless type.is_a?(Symbol)
+						raise ArgumentError, "Invalid type!"
+					end
+					
+					if description
+						unless description.is_a?(String)
+							raise ArgumentError, "Invalid description!"
+						end
+					end
+					
+					if unit
+						unless unit.is_a?(String)
+							raise ArgumentError, "Invalid unit!"
+						end
+					end
+				end
+			end
+			
+			module Interface
+				def self.prepended(provider)
+					provider.extend(Register)
 				end
 				
-				unless type.is_a?(Symbol)
-					raise ArgumentError, "Invalid type!"
-				end
+				private
 				
-				if description
-					unless description.is_a?(String)
-						raise ArgumentError, "Invalid description!"
+				# Relative metric adjustment.
+				def metric_adjust(name, amount = 1, attributes: nil)
+					unless name.is_a?(String)
+						raise ArgumentError, "Invalid name!"
+					end
+					
+					unless amount.is_a?(Numeric)
+						raise ArgumentError, "Invalid amount!"
 					end
 				end
 				
-				if unit
-					unless unit.is_a?(String)
-						raise ArgumentError, "Invalid unit!"
+				# Absolute metric assignment.
+				def metric_count(name, value, attributes: nil)
+					unless name.is_a?(String)
+						raise ArgumentError, "Invalid name!"
+					end
+					
+					unless value.is_a?(Numeric)
+						raise ArgumentError, "Invalid value!"
+					end
+				end
+				
+				# Relative metric measurement.
+				def metric_measure(name, value, attributes: nil)
+					unless name.is_a?(String)
+						raise ArgumentError, "Invalid name!"
+					end
+					
+					unless value.is_a?(Numeric)
+						raise ArgumentError, "Invalid value!"
 					end
 				end
 			end
 		end
 		
-		def self.prepended(provider)
-			provider.extend(Register)
-		end
-		
-		private
-		
-		# Relative metric adjustment.
-		def metric_adjust(name, amount = 1, attributes: nil)
-			unless name.is_a?(String)
-				raise ArgumentError, "Invalid name!"
-			end
-			
-			unless amount.is_a?(Numeric)
-				raise ArgumentError, "Invalid amount!"
-			end
-		end
-		
-		# Absolute metric assignment.
-		def metric_count(name, value, attributes: nil)
-			unless name.is_a?(String)
-				raise ArgumentError, "Invalid name!"
-			end
-			
-			unless value.is_a?(Numeric)
-				raise ArgumentError, "Invalid value!"
-			end
-		end
-		
-		# Relative metric measurement.
-		def metric_measure(name, value, attributes: nil)
-			unless name.is_a?(String)
-				raise ArgumentError, "Invalid name!"
-			end
-			
-			unless value.is_a?(Numeric)
-				raise ArgumentError, "Invalid value!"
-			end
-		end
+		Interface = Test::Interface
 	end
 end

@@ -24,31 +24,35 @@ require 'console'
 
 module Metrics
 	module Backend
-		module Register
-			def metric_register(name, type, **options)
-				Console.logger.debug(self) {"Registering metric #{name} (#{type}): #{options}."}
+		module Console
+			module Register
+				def metric_register(name, type, **options)
+					::Console.logger.debug(self) {"Registering metric #{name} (#{type}): #{options}."}
+				end
+			end
+			
+			module Interface
+				def self.prepended(provider)
+					provider.extend(Register)
+				end
+				
+				# Relative metric adjustment.
+				def metric_adjust(name, amount = 1, attributes: nil)
+					::Console.logger.info(self, name, "+= #{amount}", attributes)
+				end
+				
+				# Absolute metric assignment.
+				def metric_count(name, value, attributes: nil)
+					::Console.logger.info(self, name, "= #{amount}", attributes)
+				end
+				
+				# Relative metric measurement.
+				def metric_measure(name, value, attributes: nil)
+					::Console.logger.info(self, name, "<< #{amount}", attributes)
+				end
 			end
 		end
 		
-		def self.prepended(provider)
-			provider.extend(Register)
-		end
-		
-		private
-		
-		# Relative metric adjustment.
-		def metric_adjust(name, amount = 1, attributes: nil)
-			Console.logger.info(self, name, "+= #{amount}", attributes)
-		end
-		
-		# Absolute metric assignment.
-		def metric_count(name, value, attributes: nil)
-			Console.logger.info(self, name, "= #{amount}", attributes)
-		end
-		
-		# Relative metric measurement.
-		def metric_measure(name, value, attributes: nil)
-			Console.logger.info(self, name, "<< #{amount}", attributes)
-		end
+		Interface = Console::Interface
 	end
 end

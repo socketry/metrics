@@ -21,8 +21,9 @@
 # THE SOFTWARE.
 
 module Metrics
+	# Require a specific trace backend.
 	def self.require_backend(env = ENV)
-		if backend = env['METRICS_BACKEND']
+		if path = env['METRICS_BACKEND']
 			require(path)
 		end
 	end
