@@ -20,35 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require 'console'
-require_relative '../metric'
-
 module Metrics
-	module Backend
-		module Console
-			class Metric < Metrics::Metric
-				def emit(value, tags: nil, sample_rate: 1.0)
-					::Console.logger.info(self, @name, value, tags)
-				end
-			end
-			
-			module Interface
-				def metric(name, type, description: nil, unit: nil, &block)
-					return Metric.new(name, type, description, unit)
-				end
-				
-				# def metric_call_counter(name, description: nil, tags: nil)
-				# 	metric = self.metric(...)
-				# 
-				# 	self.define_method(name) do
-				# 		metric.emit(1)
-				#			super
-				# 	end
-				# end
-			end
+	class Metric
+		def initialize(name, type, description, unit)
+			@name = name
+			@type = type
+			@description = description
+			@unit = unit
 		end
 		
-		Interface = Console::Interface
+		attr :name
+		attr :type
+		attr :description
+		attr :unit
+		
+		def emit(value, tags: nil, sample_rate: 1.0)
+			raise NotImplementedError
+		end
 	end
 end
-

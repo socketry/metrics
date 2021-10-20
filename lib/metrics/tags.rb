@@ -20,35 +20,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require 'console'
-require_relative '../metric'
+require_relative 'backend'
 
 module Metrics
-	module Backend
-		module Console
-			class Metric < Metrics::Metric
-				def emit(value, tags: nil, sample_rate: 1.0)
-					::Console.logger.info(self, @name, value, tags)
-				end
+	module Tags
+		def self.normalize(tags)
+			return nil unless tags&.any?
+			
+			if tags.is_a?(Hash)
+				tags = tags.map{|key, value| "#{key}:#{value}"}
 			end
 			
-			module Interface
-				def metric(name, type, description: nil, unit: nil, &block)
-					return Metric.new(name, type, description, unit)
-				end
-				
-				# def metric_call_counter(name, description: nil, tags: nil)
-				# 	metric = self.metric(...)
-				# 
-				# 	self.define_method(name) do
-				# 		metric.emit(1)
-				#			super
-				# 	end
-				# end
-			end
+			return Array(tags)
 		end
-		
-		Interface = Console::Interface
 	end
 end
-
