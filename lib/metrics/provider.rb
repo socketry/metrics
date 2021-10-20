@@ -23,6 +23,10 @@
 require_relative 'backend'
 
 module Metrics
+	def self.enabled?
+		self.const_defined?(:Backend)
+	end
+	
 	# A module which contains tracing specific wrappers.
 	module Provider
 		def metrics_provider
@@ -31,13 +35,13 @@ module Metrics
 	end
 	
 	# Bail out if there is no backend configured.
-	if self.const_defined?(:Backend)
+	if self.enabled?
 		# Extend the specified class in order to emit traces.
 		def self.Provider(klass, &block)
 			klass.extend(Provider)
 			
 			provider = klass.metrics_provider
-			provider.prepend(Backend::Interface)
+			provider.extend(Backend::Interface)
 			
 			klass.prepend(provider)
 			
@@ -45,7 +49,7 @@ module Metrics
 		end
 	else
 		def self.Provider(klass, &block)
-			# Tracing disabled.
+			# Metrics disabled.
 		end
 	end
 end

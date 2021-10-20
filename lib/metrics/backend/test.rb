@@ -21,72 +21,59 @@
 # THE SOFTWARE.
 
 require 'console'
+require_relative '../metric'
 
 module Metrics
 	module Backend
 		module Test
-			module Register
-				def metric_register(name, type, description: nil, unit: nil, &block)
-					unless name.is_a?(String)
-						raise ArgumentError, "Invalid name!"
+			VALID_METRIC_NAME = /\A[a-z0-9\-_\.]{1,128}\Z/
+			VALID_TAG = /\A[a-z][a-z0-9\-_\.:\\]{0,127}\Z/
+			
+			class Metric < Metrics::Metric
+				def emit(value, tags: nil, sample_rate: 1.0)
+					unless value.is_a?(Numeric)
+						raise ArgumentError, "Value must be numeric!"
 					end
 					
-					unless type.is_a?(Symbol)
-						raise ArgumentError, "Invalid type!"
-					end
-					
-					if description
-						unless description.is_a?(String)
-							raise ArgumentError, "Invalid description!"
-						end
-					end
-					
-					if unit
-						unless unit.is_a?(String)
-							raise ArgumentError, "Invalid unit!"
+					tags&.each do |tag|
+						raise ArgumentError, "Invalid tag, must be string!" unless tag.is_a?(String)
+						
+						unless tag =~ VALID_TAG
+							raise ArgumentError, "Invalid tag, must match #{VALID_TAG}!"
 						end
 					end
 				end
 			end
 			
 			module Interface
-				def self.prepended(provider)
-					provider.extend(Register)
-				end
-				
-				private
-				
-				# Relative metric adjustment.
-				def metric_adjust(name, amount = 1, attributes: nil)
+				def metric(name, type, description: nil, unit: nil, &block)
 					unless name.is_a?(String)
-						raise ArgumentError, "Invalid name!"
+						raise ArgumentError, "Invalid name, must be string!"
 					end
 					
-					unless amount.is_a?(Numeric)
-						raise ArgumentError, "Invalid amount!"
-					end
-				end
-				
-				# Absolute metric assignment.
-				def metric_count(name, value, attributes: nil)
-					unless name.is_a?(String)
-						raise ArgumentError, "Invalid name!"
+					unless name =~ VALID_METRIC_NAME
+						raise ArgumentError, "Invalid name, must match #{VALID_METRIC_NAME}!"
 					end
 					
-					unless value.is_a?(Numeric)
-						raise ArgumentError, "Invalid value!"
-					end
-				end
-				
-				# Relative metric measurement.
-				def metric_measure(name, value, attributes: nil)
-					unless name.is_a?(String)
-						raise ArgumentError, "Invalid name!"
+					unless type.is_a?(Symbol)
+						raise ArgumentError, "Invalid type, must be symbol!"
 					end
 					
-					unless value.is_a?(Numeric)
-						raise ArgumentError, "Invalid value!"
+					# Description is optional but must be string if given:
+					if description
+						unless description.is_a?(String)
+							raise ArgumentError, "Invalid description, must be string!"
+						end
 					end
+					
+					# Unit is optional but must be string if given:
+					if unit
+						unless unit.is_a?(String)
+							raise ArgumentError, "Invalid unit, must be string!"
+						end
+					end
+					
+					return Metric.new(name, type, description, unit)
 				end
 			end
 		end

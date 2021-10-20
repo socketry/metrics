@@ -20,31 +20,38 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-require 'metrics/provider'
+require 'metrics'
 
 class MyClass
 	def my_method(argument)
 	end
 end
 
+if Metrics.enabled?
+	# define constants?
+end
+
 Metrics::Provider(MyClass) do
-	metric_register('called', :counter, description: 'Number of times invoked.')
+	MYCLASS_CALL_COUNT = metric('my_class.call', :counter, description: 'Call counter.')
 	
 	def my_method(argument)
-		metric_adjust('called', 1)
+		MYCLASS_CALL_COUNT.emit(1, tags: ["foo", "bar"])
+		
 		super
 	end
+	
+	# metric_call_counter :my_method
 end
 
 RSpec.describe Metrics do
 	it "has a version number" do
 		expect(Metrics::VERSION).not_to be nil
 	end
-
+	
 	it "can invoke metric wrapper" do
 		instance = MyClass.new
 		
-		expect(instance).to receive(:metric_adjust).and_call_original
+		# expect(instance).to receive(:metric_adjust).and_call_original
 		
 		instance.my_method(10)
 	end
