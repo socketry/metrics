@@ -31,42 +31,29 @@
 			
 	<h1>Metrics</h1><p>Capture metrics about code execution in a vendor agnostic way.</p>
 <p><a href="https://github.com/socketry/metrics/actions?workflow=Development"><img src="https://github.com/socketry/metrics/workflows/Development/badge.svg" alt="Development Status"/></a></p>
-<section id="installation"><h2>Installation</h2>
-<pre><code>bundle add metrics
-</code></pre>
+<section id="features"><h2>Features</h2>
+<ul>
+<li>Zero-overhead if tracing is disabled and minimal overhead if enabled.</li>
+<li>Small opinionated interface with standardised semantics.</li>
+</ul>
 </section><section id="usage"><h2>Usage</h2>
 <p>Please browse the <a href="source/index.html">source code index</a> or refer to the guides below.</p>
 
+	<section>
+		<h3><a href="guides/getting-started/index.html">Getting Started</a></h3>
+		
+			<p>This guide explains how to use <code>metrics</code> for capturing run-time metrics.</p>
 
-</section><section id="push-metrics"><h3>Push Metrics</h3>
-<pre><code class="language-ruby">require 'metrics'
+	</section>
 
-class MyClass
-	def my_method
-		puts &quot;Hello World&quot;
-	end
-end
-
-# If metrics are disabled, this is a no-op.
-Metrics::Provider(MyClass) do
-	metric_register('called', :counter, description: 'Number of times invoked.')
-	
-	def my_method
-		metric_increment('called')
-		super
-	end
-end
-
-MyClass.new.my_method
-</code></pre>
 </section><section id="contributing"><h2>Contributing</h2>
 <p>We welcome contributions to this project.</p>
 <ol>
-<li>Fork it</li>
-<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
-<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
-<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
-<li>Create new Pull Request</li>
+<li>Fork it.</li>
+<li>Create your feature branch (<code>git checkout -b my-new-feature</code>).</li>
+<li>Commit your changes (<code>git commit -am 'Add some feature'</code>).</li>
+<li>Push to the branch (<code>git push origin my-new-feature</code>).</li>
+<li>Create new Pull Request.</li>
 </ol>
 </section><section id="license"><h2>License</h2>
 <p>Released under the MIT license.</p>
