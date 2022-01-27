@@ -26,8 +26,8 @@ require_relative '../metric'
 module Metrics
 	module Backend
 		module Test
-			VALID_METRIC_NAME = /\A[a-z0-9\-_\.]{1,128}\Z/
-			VALID_TAG = /\A[a-z][a-z0-9\-_\.:\\]{0,127}\Z/
+			VALID_METRIC_NAME = /\A[a-z0-9\-_\.]{1,128}\Z/i
+			VALID_TAG = /\A[a-z][a-z0-9\-_\.:\\]{0,127}\Z/i
 			
 			class Metric < Metrics::Metric
 				def emit(value, tags: nil, sample_rate: 1.0)
