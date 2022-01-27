@@ -36,10 +36,10 @@ module Metrics
 					end
 					
 					tags&.each do |tag|
-						raise ArgumentError, "Invalid tag, must be string!" unless tag.is_a?(String)
+						raise ArgumentError, "Invalid tag (must be String): #{tag.inspect}!" unless tag.is_a?(String)
 						
 						unless tag =~ VALID_TAG
-							raise ArgumentError, "Invalid tag, must match #{VALID_TAG}!"
+							raise ArgumentError, "Invalid tag (must match #{VALID_TAG}): #{tag.inspect}!"
 						end
 					end
 				end
@@ -48,28 +48,28 @@ module Metrics
 			module Interface
 				def metric(name, type, description: nil, unit: nil, &block)
 					unless name.is_a?(String)
-						raise ArgumentError, "Invalid name, must be string!"
+						raise ArgumentError, "Invalid name (must be String): #{name.inspect}!"
 					end
 					
 					unless name =~ VALID_METRIC_NAME
-						raise ArgumentError, "Invalid name, must match #{VALID_METRIC_NAME}!"
+						raise ArgumentError, "Invalid name (must match #{VALID_METRIC_NAME}): #{name.inspect}!"
 					end
 					
 					unless type.is_a?(Symbol)
-						raise ArgumentError, "Invalid type, must be symbol!"
+						raise ArgumentError, "Invalid type (must be Symbol): #{type.inspect}!"
 					end
 					
 					# Description is optional but must be string if given:
 					if description
 						unless description.is_a?(String)
-							raise ArgumentError, "Invalid description, must be string!"
+							raise ArgumentError, "Invalid description (must be String): #{description.inspect}!"
 						end
 					end
 					
 					# Unit is optional but must be string if given:
 					if unit
 						unless unit.is_a?(String)
-							raise ArgumentError, "Invalid unit, must be string!"
+							raise ArgumentError, "Invalid unit (must be String): #{unit.inspect}!"
 						end
 					end
 					
