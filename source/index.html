@@ -12,6 +12,7 @@
 		
 		<script src="../_components/jquery/jquery.min.js"></script>
 		<script src="../_components/jquery-syntax/jquery.syntax.min.js"></script>
+		<script src="../_components/mermaid/mermaid.min.js"></script>
 		
 		<script src="../_static/links.js"></script>
 		
@@ -20,6 +21,12 @@
 			jQuery(function($) {
 				$.syntax();
 			});
+			
+			let isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+			let config = {theme: 'light'};
+			if (isDarkMode) config.theme = 'dark';
+			else config.theme = 'forest';
+			mermaid.initialize(config);
 		//]]>
 		</script>
 	</head>
@@ -32,49 +39,49 @@
 	<h1>Overview</h1>
 	
 	<ul class="index"><li>
-						<a href="http://localhost:42415/source/Metrics/index"><code class="language-ruby">module Metrics</code></a>
+						<a href="Metrics/index.html"><code class="language-ruby">module Metrics</code></a>
 						
 						
 						
 					
 					<ul class="index"><li>
-						<a href="http://localhost:42415/source/Metrics/Backend/index"><code class="language-ruby">module Backend</code></a>
+						<a href="Metrics/Backend/index.html"><code class="language-ruby">module Backend</code></a>
 						
 						
 						
 					
 					<ul class="index"><li>
-						<a href="http://localhost:42415/source/Metrics/Backend/Console/index"><code class="language-ruby">module Console</code></a>
+						<a href="Metrics/Backend/Console/index.html"><code class="language-ruby">module Console</code></a>
 						
 						
 						
 					
 					<ul class="index"><li>
-						<a href="http://localhost:42415/source/Metrics/Backend/Console/Metric/index"><code class="language-ruby">class Metric &lt; Metrics::Metric</code></a>
+						<a href="Metrics/Backend/Console/Metric/index.html"><code class="language-ruby">class Metric &lt; Metrics::Metric</code></a>
 						
 						
 						
 					
 					<ul class="index"></ul>				</li><li>
-						<a href="http://localhost:42415/source/Metrics/Backend/Console/Interface/index"><code class="language-ruby">module Interface</code></a>
+						<a href="Metrics/Backend/Console/Interface/index.html"><code class="language-ruby">module Interface</code></a>
 						
 						
 						
 					
 					<ul class="index"></ul>				</li></ul>				</li><li>
-						<a href="http://localhost:42415/source/Metrics/Backend/Test/index"><code class="language-ruby">module Test</code></a>
+						<a href="Metrics/Backend/Test/index.html"><code class="language-ruby">module Test</code></a>
 						
 						
 						
 					
 					<ul class="index"><li>
-						<a href="http://localhost:42415/source/Metrics/Backend/Test/Metric/index"><code class="language-ruby">class Metric &lt; Metrics::Metric</code></a>
+						<a href="Metrics/Backend/Test/Metric/index.html"><code class="language-ruby">class Metric &lt; Metrics::Metric</code></a>
 						
 						
 						
 					
 					<ul class="index"></ul>				</li><li>
-						<a href="http://localhost:42415/source/Metrics/Backend/Test/Interface/index"><code class="language-ruby">module Interface</code></a>
+						<a href="Metrics/Backend/Test/Interface/index.html"><code class="language-ruby">module Interface</code></a>
 						
 						
 						
@@ -82,7 +89,7 @@
 					<ul class="index"></ul>				</li></ul>				</li></ul>				</li><li>
 					
 									</li><li>
-						<a href="http://localhost:42415/source/Metrics/Metric/index"><code class="language-ruby">class Metric</code></a>
+						<a href="Metrics/Metric/index.html"><code class="language-ruby">class Metric</code></a>
 						
 						
 						
@@ -96,7 +103,7 @@
 
 					
 					<ul class="index"></ul>				</li><li>
-						<a href="http://localhost:42415/source/Metrics/Tags/index"><code class="language-ruby">module Tags</code></a>
+						<a href="Metrics/Tags/index.html"><code class="language-ruby">module Tags</code></a>
 						
 						
 						

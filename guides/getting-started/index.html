@@ -12,6 +12,7 @@
 		
 		<script src="../../_components/jquery/jquery.min.js"></script>
 		<script src="../../_components/jquery-syntax/jquery.syntax.min.js"></script>
+		<script src="../../_components/mermaid/mermaid.min.js"></script>
 		
 		<script src="../../_static/links.js"></script>
 		
@@ -20,6 +21,12 @@
 			jQuery(function($) {
 				$.syntax();
 			});
+			
+			let isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+			let config = {theme: 'light'};
+			if (isDarkMode) config.theme = 'dark';
+			else config.theme = 'forest';
+			mermaid.initialize(config);
 		//]]>
 		</script>
 	</head>
@@ -40,7 +47,7 @@
 <p><code>metrics</code> has several core concepts:</p>
 <ul>
 <li>A <a href="../../source/Metrics/Provider/index.html" title="Metrics::Provider"><code class="language-ruby">module Metrics::Provider</code></a> which implements custom logic for extracting metrics from existing code.</li>
-<li>A <a href="http://localhost:42415/source/Metrics/Backend/index" title="Metrics::Backend"><code class="language-ruby">module Metrics::Backend</code></a> which connects metrics to a specific backend system for processing.</li>
+<li>A <a href="../../source/Metrics/Backend/index.html" title="Metrics::Backend"><code class="language-ruby">module Metrics::Backend</code></a> which connects metrics to a specific backend system for processing.</li>
 </ul>
 </section><section id="usage"><h2>Usage</h2>
 <p>There are two main aspects to integrating within this gem.</p>

@@ -12,6 +12,7 @@
 		
 		<script src="../_components/jquery/jquery.min.js"></script>
 		<script src="../_components/jquery-syntax/jquery.syntax.min.js"></script>
+		<script src="../_components/mermaid/mermaid.min.js"></script>
 		
 		<script src="../_static/links.js"></script>
 		
@@ -20,6 +21,12 @@
 			jQuery(function($) {
 				$.syntax();
 			});
+			
+			let isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+			let config = {theme: 'light'};
+			if (isDarkMode) config.theme = 'dark';
+			else config.theme = 'forest';
+			mermaid.initialize(config);
 		//]]>
 		</script>
 	</head>
