@@ -63,6 +63,17 @@
 		require(path)
 	end
 end</code></pre>
+					</details></section><section id="Metrics.enabled?"><h3><code class="language-ruby">def self.enabled?</code></h3><details open>
+	<summary><h4>Signature</h4></summary>
+	<dl><dt>
+					<strong>returns</strong>　<code class="language-ruby">Boolean</code></dt><dd><p>Whether there is an active backend.</p>
+</dd></dl>
+</details>
+<details>
+						<summary><h4>Implementation</h4></summary>
+						<pre><code class="language-ruby">def self.enabled?
+	self.const_defined?(:Backend)
+end</code></pre>
 					</details></section>	</section>
 	
 	
