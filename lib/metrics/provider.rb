@@ -23,6 +23,7 @@
 require_relative 'backend'
 
 module Metrics
+	# @returns [Boolean] Whether there is an active backend.
 	def self.enabled?
 		self.const_defined?(:Backend)
 	end
