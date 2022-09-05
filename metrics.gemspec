@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 require_relative "lib/metrics/version"
 
@@ -14,7 +15,10 @@ Gem::Specification.new do |spec|
 	
 	spec.homepage = "https://github.com/socketry/metrics"
 	
-	spec.files = Dir.glob('{lib}/**/*', File::FNM_DOTMATCH, base: __dir__)
+	spec.files = Dir.glob(['{lib}/**/*', '*.md'], File::FNM_DOTMATCH, base: __dir__)
 	
-	spec.add_development_dependency "rspec", "~> 3.0"
+	spec.add_development_dependency "bake-test", "~> 0.2"
+	spec.add_development_dependency "bake-test-external", "~> 0.2"
+	spec.add_development_dependency "covered", "~> 0.16"
+	spec.add_development_dependency "sus", "~> 0.13"
 end
