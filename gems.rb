@@ -9,7 +9,6 @@ gemspec
 
 group :test do
 	gem "console"
-	gem "ddtrace"
 end
 
 group :maintenance, optional: true do
@@ -17,9 +16,4 @@ group :maintenance, optional: true do
 	gem "bake-gem"
 	
 	gem "utopia-project"
-end
-
-group :test do
-	gem "console"
-	gem "ddtrace"
 end
