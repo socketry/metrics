@@ -8,7 +8,7 @@ require_relative '../metric'
 
 module Metrics
 	module Backend
-		module Document
+		module Capture
 			class Metric < Metrics::Metric
 				def initialize(...)
 					super
@@ -45,23 +45,21 @@ module Metrics
 				end
 			end
 			
-			class << self
-				def metrics
-					@metrics ||= []
-				end
+			def self.metrics
+				@metrics ||= []
 			end
 			
 			module Interface
 				def metric(name, type, description: nil, unit: nil, &block)
 					metric = Metric.new(name, type, description, unit)
 					
-					Document.metrics << metric
+					Capture.metrics << metric
 					
 					return metric
 				end
 			end
 		end
 		
-		Interface = Document::Interface
+		Interface = Capture::Interface
 	end
 end
