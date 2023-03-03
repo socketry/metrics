@@ -39,6 +39,10 @@ module Metrics
 						sample_rates: @sample_rates.sort.uniq
 					}
 				end
+				
+				def to_json(...)
+					as_json.to_json(...)
+				end
 			end
 			
 			class << self

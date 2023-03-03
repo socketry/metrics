@@ -1,12 +1,11 @@
 
-def document(child)
+def document(environment: 'environment')
 	ENV['METRICS_BACKEND'] = 'metrics/backend/document'
 	require 'metrics'
 	
-	self.context.lookup(child).call
+	call(environment)
 	
 	backend = Metrics::Backend::Document
-	backend.metrics.each do |metric|
-		pp metric.as_json
-	end
+	
+	return backend.metrics
 end
