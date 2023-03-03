@@ -34,4 +34,3 @@ module Metrics
 		Interface = Console::Interface
 	end
 end
-
