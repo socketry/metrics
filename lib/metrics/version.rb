@@ -4,5 +4,5 @@
 # Copyright, 2021-2022, by Samuel Williams.
 
 module Metrics
-	VERSION = "0.5.0"
+	VERSION = "0.6.0"
 end
