@@ -1,4 +1,4 @@
-# Documentation
+# Document
 
 This guide explains how to use `metrics` for exporting metric definitions from your application.
 
