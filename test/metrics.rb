@@ -34,8 +34,6 @@ describe Metrics do
 	it "can invoke metric wrapper" do
 		instance = MyClass.new
 		
-		# expect(instance).to receive(:metric_adjust).and_call_original
-		
 		instance.my_method(10)
 	end
 end

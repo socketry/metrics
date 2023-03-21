@@ -29,9 +29,6 @@ There are two main aspects to integrating within this gem.
 Adding metrics to libraries requires the use of {ruby Metrics::Provider}:
 
 ~~~ ruby
-### Push Metrics
-
-~~~ ruby
 require 'metrics'
 
 class MyClass
@@ -42,10 +39,10 @@ end
 
 # If metrics are disabled, this is a no-op.
 Metrics::Provider(MyClass) do
-	metric_register('called', :counter, description: 'Number of times invoked.')
+	CALL_COUNT = metric('call_count', :counter, description: 'Number of times invoked.')
 	
 	def my_method
-		metric_adjust('called', 1)
+		CALL_COUNT.emit(1)
 		
 		super
 	end
@@ -55,6 +52,32 @@ MyClass.new.my_method
 ~~~
 
 This code by itself will not create any metrics. In order to execute it and output metrics, you must set up a backend to consume them.
+
+#### Class Methods
+
+You can also expose metrics for class methods:
+
+~~~ ruby
+require 'metrics'
+
+class MyClass
+	def self.my_method
+		puts "Hello World"
+	end
+end
+
+Metrics::Provider(MyClass.singleton_class) do
+	CALL_COUNT = metric('call_count', :counter, description: 'Number of times invoked.')
+	
+	def my_method
+		CALL_COUNT.emit(1)
+		
+		super
+	end
+end
+
+MyClass.my_method
+~~~
 
 ### Consuming Metrics
 
