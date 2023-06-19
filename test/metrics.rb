@@ -15,7 +15,7 @@ if Metrics.enabled?
 end
 
 Metrics::Provider(MyClass) do
-	MYCLASS_CALL_COUNT = metric('my_class.call', :counter, description: 'Call counter.')
+	MYCLASS_CALL_COUNT = Metrics.metric('my_class.call', :counter, description: 'Call counter.')
 	
 	def my_method(argument)
 		MYCLASS_CALL_COUNT.emit(1, tags: ["foo", "bar"])

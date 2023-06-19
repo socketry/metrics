@@ -39,7 +39,7 @@ end
 
 # If metrics are disabled, this is a no-op.
 Metrics::Provider(MyClass) do
-	CALL_COUNT = metric('call_count', :counter, description: 'Number of times invoked.')
+	CALL_COUNT = Metrics.metric('call_count', :counter, description: 'Number of times invoked.')
 	
 	def my_method
 		CALL_COUNT.emit(1)
@@ -67,7 +67,7 @@ class MyClass
 end
 
 Metrics::Provider(MyClass.singleton_class) do
-	CALL_COUNT = metric('call_count', :counter, description: 'Number of times invoked.')
+	CALL_COUNT = Metrics.metric('call_count', :counter, description: 'Number of times invoked.')
 	
 	def my_method
 		CALL_COUNT.emit(1)
