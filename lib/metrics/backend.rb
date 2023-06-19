@@ -8,6 +8,8 @@ module Metrics
 	def self.require_backend(env = ENV)
 		if path = env['METRICS_BACKEND']
 			require(path)
+			
+			Metrics.extend(Backend::Interface)
 		end
 	end
 end

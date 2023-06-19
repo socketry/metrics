@@ -21,6 +21,13 @@ module Metrics
 		end
 	end
 	
+	module Deprecated
+		def metric(...)
+			warn "Metrics::Provider#metric is deprecated. Please use Metrics.metric instead."
+			Metrics.metric(...)
+		end
+	end
+	
 	private_constant :Singleton
 	
 	# Bail out if there is no backend configured.
@@ -30,7 +37,7 @@ module Metrics
 			klass.extend(Singleton)
 			
 			provider = klass.metrics_provider
-			provider.extend(Backend::Interface)
+			provider.extend(Deprecated)
 			
 			klass.prepend(provider)
 			

@@ -9,7 +9,7 @@ class App
 end
 
 Metrics::Provider(App) do
-	MY_METRIC = metric(:my_metric, :gauge, description: "My metric", unit: "seconds")
+	MY_METRIC = Metrics.metric(:my_metric, :gauge, description: "My metric", unit: "seconds")
 	
 	def call
 		MY_METRIC.emit(1, tags: ['environment:test'])
