@@ -15,10 +15,12 @@ Gem::Specification.new do |spec|
 	
 	spec.homepage = "https://github.com/socketry/metrics"
 	
+	spec.metadata = {
+		"documentation_uri" => "https://socketry.github.io/metrics/",
+		"source_code_uri" => "https://github.com/socketry/metrics.git",
+	}
+	
 	spec.files = Dir.glob(['{bake,lib}/**/*', '*.md'], File::FNM_DOTMATCH, base: __dir__)
 	
-	spec.add_development_dependency "bake-test", "~> 0.2"
-	spec.add_development_dependency "bake-test-external", "~> 0.2"
-	spec.add_development_dependency "covered", "~> 0.16"
-	spec.add_development_dependency "sus", "~> 0.13"
+	spec.required_ruby_version = ">= 3.1"
 end
