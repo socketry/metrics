@@ -11,7 +11,13 @@ Capture metrics about code execution in a vendor agnostic way. As the author of 
 
 ## Usage
 
-Please see the [project documentation](https://socketry.github.io/metrics).
+Please see the [project documentation](https://socketry.github.io/metrics/) for more details.
+
+  - [Getting Started](https://socketry.github.io/metrics/guides/getting-started/index) - This guide explains how to use `metrics` for capturing run-time metrics.
+
+  - [Capture](https://socketry.github.io/metrics/guides/capture/index) - This guide explains how to use `metrics` for exporting metric definitions from your application.
+
+  - [Testing](https://socketry.github.io/metrics/guides/testing/index) - This guide explains how to write assertions in your test suite to validate `metrics` are being emitted correctly.
 
 ## Contributing
 
