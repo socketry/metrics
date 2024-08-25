@@ -7,19 +7,21 @@ source 'https://rubygems.org'
 
 gemspec
 
-group :test do
-	gem "sus", "~> 0.13"
-	gem "covered", "~> 0.16"
-	
-	gem "bake-test", "~> 0.2"
-	gem "bake-test-external", "~> 0.2"
-	
-	gem "console"
-end
-
 group :maintenance, optional: true do
 	gem "bake-modernize"
 	gem "bake-gem"
 	
 	gem "utopia-project"
+end
+
+group :test do
+	gem "sus"
+	gem "covered"
+	gem "decode"
+	gem "rubocop"
+	
+	gem "sus-fixtures-console"
+	
+	gem "bake-test"
+	gem "bake-test-external"
 end
