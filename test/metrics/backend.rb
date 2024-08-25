@@ -13,7 +13,9 @@ describe Metrics::Backend do
 		include_context Sus::Fixtures::Console::CapturedLogger
 		
 		it "logs a warning if backend cannot be loaded" do
-			subject.require_backend({"METRICS_BACKEND" => "metrics/backend/missing"})
+			expect(
+				subject.require_backend({"METRICS_BACKEND" => "metrics/backend/missing"})
+			).to be == false
 			
 			expect_console.to have_logged(
 				severity: be == :warn,

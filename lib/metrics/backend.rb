@@ -14,9 +14,13 @@ module Metrics
 					require(backend)
 				rescue LoadError => error
 					::Console::Event::Failure.for(error).emit(self, "Unable to load metrics backend!", backend: backend, severity: :warn)
+					
+					return false
 				end
 				
 				Metrics.extend(Backend::Interface)
+				
+				return true
 			end
 		end
 	end
