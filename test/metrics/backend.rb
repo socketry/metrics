@@ -8,7 +8,7 @@ require "json"
 
 require "sus/fixtures/console"
 
-describe Metrics do
+describe Metrics::Backend do
 	with ".require_backend" do
 		include_context Sus::Fixtures::Console::CapturedLogger
 		
