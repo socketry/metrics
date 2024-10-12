@@ -21,9 +21,11 @@ module Metrics
 					tags&.each do |tag|
 						raise ArgumentError, "Invalid tag (must be String): #{tag.inspect}!" unless tag.is_a?(String)
 						
-						unless tag =~ VALID_TAG
-							raise ArgumentError, "Invalid tag (must match #{VALID_TAG}): #{tag.inspect}!"
-						end
+						# We should let the underlying backend handle any tag limitations, e.g. converting invalid characters to underscores, etc.
+						#
+						# unless tag =~ VALID_TAG
+						# 	raise ArgumentError, "Invalid tag (must match #{VALID_TAG}): #{tag.inspect}!"
+						# end
 					end
 				end
 			end
