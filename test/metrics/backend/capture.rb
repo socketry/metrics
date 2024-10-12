@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2023, by Samuel Williams.
+# Copyright, 2023-2024, by Samuel Williams.
 
-require 'metrics/provider'
+require "metrics/provider"
 
 describe Metrics::Provider do
 	let(:document_root) {File.expand_path(".capture", __dir__)}
-	let(:environment) {{'METRICS_BACKEND' => nil}}
+	let(:environment) {{"METRICS_BACKEND" => nil}}
 	
 	it "runs without metrics" do
 		pid = Process.spawn(environment, "bundle", "exec", "bake", "run", chdir: document_root)
@@ -57,7 +57,7 @@ describe Metrics::Provider do
 			"description" => be == "My metric",
 			"unit" => be == "seconds",
 			"values" => be == [1],
-			"tags" => be == ['environment:test'],
+			"tags" => be == ["environment:test"],
 			"sample_rates" => be == [1.0]
 		)
 	end

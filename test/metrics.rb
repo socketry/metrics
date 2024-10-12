@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2021-2023, by Samuel Williams.
+# Copyright, 2021-2024, by Samuel Williams.
 
-require 'metrics'
+require "metrics"
 
 class MyClass
 	def my_method(argument)
@@ -15,7 +15,7 @@ if Metrics.enabled?
 end
 
 Metrics::Provider(MyClass) do
-	MYCLASS_CALL_COUNT = Metrics.metric('my_class.call', :counter, description: 'Call counter.')
+	MYCLASS_CALL_COUNT = Metrics.metric("my_class.call", :counter, description: "Call counter.")
 	
 	def my_method(argument)
 		MYCLASS_CALL_COUNT.emit(1, tags: ["foo", "bar"])

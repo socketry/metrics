@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 # Released under the MIT License.
-# Copyright, 2023, by Samuel Williams.
+# Copyright, 2023-2024, by Samuel Williams.
 
 # Enable capturing metrics.
 def capture
-	ENV['METRICS_BACKEND'] = 'metrics/backend/capture'
-	require 'metrics'
+	ENV["METRICS_BACKEND"] = "metrics/backend/capture"
+	require "metrics"
 end
 
 # Generate a list of metrics that have been captured.

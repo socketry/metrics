@@ -3,7 +3,7 @@
 # Released under the MIT License.
 # Copyright, 2024, by Samuel Williams.
 
-require 'metrics/provider'
+require "metrics/provider"
 
 class MyApplication
 	def work
@@ -11,7 +11,7 @@ class MyApplication
 	end
 	
 	Metrics::Provider(self) do
-		WORK_METRIC = Metrics.metric('my_application.work.count', :counter, description: 'Work counter')
+		WORK_METRIC = Metrics.metric("my_application.work.count", :counter, description: "Work counter")
 		
 		def work
 			WORK_METRIC.emit(1)
