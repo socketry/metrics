@@ -35,6 +35,8 @@ module Metrics
 			
 			return provider
 		end
+		
+		Config::DEFAULT.prepare
 	else
 		def self.Provider(klass, &block)
 			# Metrics disabled.

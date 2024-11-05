@@ -38,8 +38,6 @@ module Metrics
 					if require(backend)
 						Metrics.extend(Backend::Interface)
 						
-						self.prepare
-						
 						return true
 					end
 				rescue LoadError => error
