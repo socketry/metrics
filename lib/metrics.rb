@@ -6,3 +6,7 @@
 require_relative "metrics/version"
 require_relative "metrics/provider"
 require_relative "metrics/tags"
+
+# @namespace
+module Metrics
+end

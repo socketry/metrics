@@ -19,6 +19,14 @@ Please see the [project documentation](https://socketry.github.io/metrics/) for 
 
   - [Testing](https://socketry.github.io/metrics/guides/testing/index) - This guide explains how to write assertions in your test suite to validate `metrics` are being emitted correctly.
 
+## Releases
+
+Please see the [project releases](https://socketry.github.io/metrics/releases/index) for all releases.
+
+### Unreleased
+
+  - [Introduce `Metrics::Config` to Expose `prepare` Hook](https://socketry.github.io/metrics/releases/index#introduce-metrics::config-to-expose-prepare-hook)
+
 ## Contributing
 
 We welcome contributions to this project.

@@ -3,7 +3,6 @@
 # Released under the MIT License.
 # Copyright, 2021-2024, by Samuel Williams.
 
-require "console"
 require_relative "../metric"
 
 module Metrics
