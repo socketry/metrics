@@ -33,7 +33,7 @@ module Metrics
 		
 		# Require a specific metrics backend implementation.
 		def require_backend(env = ENV)
-			if backend = env['METRICS_BACKEND']
+			if backend = env["METRICS_BACKEND"]
 				begin
 					if require(backend)
 						Metrics.extend(Backend::Interface)
