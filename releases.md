@@ -1,6 +1,6 @@
 # Releases
 
-## Unreleased
+## v0.12.1
 
 ### Introduce `Metrics::Config` to Expose `prepare` Hook
 

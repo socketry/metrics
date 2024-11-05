@@ -23,7 +23,7 @@ Please see the [project documentation](https://socketry.github.io/metrics/) for 
 
 Please see the [project releases](https://socketry.github.io/metrics/releases/index) for all releases.
 
-### Unreleased
+### v0.12.1
 
   - [Introduce `Metrics::Config` to Expose `prepare` Hook](https://socketry.github.io/metrics/releases/index#introduce-metrics::config-to-expose-prepare-hook)
 
