@@ -6,22 +6,16 @@
 require "metrics/config"
 require "json"
 
-require "sus/fixtures/console"
-
 describe Metrics::Config do
 	let(:config) {subject.default}
 	
 	with ".require_backend" do
-		include_context Sus::Fixtures::Console::CapturedLogger
-		
 		it "logs a warning if backend cannot be loaded" do
+			expect(config).to receive(:warn).and_return(nil)
+			
 			expect(
 				config.require_backend({"METRICS_BACKEND" => "metrics/backend/missing"})
 			).to be == false
-			
-			expect_console.to have_logged(
-				severity: be == :warn,
-			)
 		end
 	end
 end

@@ -36,7 +36,7 @@ module Metrics
 			if backend = env["METRICS_BACKEND"]
 				begin
 					if require(backend)
-						Metrics.extend(Backend::Interface)
+						Metrics.singleton_class.prepend(Backend::Interface)
 						
 						return true
 					end
