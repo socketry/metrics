@@ -1,6 +1,6 @@
 # Releases
 
-## Unreleased
+## v0.13.0
 
   - Introduce `metrics:provider:list` command to list all available metrics providers.
 
