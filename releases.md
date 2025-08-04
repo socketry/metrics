@@ -1,5 +1,9 @@
 # Releases
 
+## Unreleased
+
+  - Introduce `metrics:provider:list` command to list all available metrics providers.
+
 ## v0.12.1
 
 ### Introduce `Metrics::Config` to Expose `prepare` Hook
