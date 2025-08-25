@@ -1,5 +1,9 @@
 # Releases
 
+## Unreleased
+
+  - Don't call `prepare` in `metrics/provider.rb`. It can cause circular loading warnings.
+
 ## v0.13.0
 
   - Introduce `metrics:provider:list` command to list all available metrics providers.

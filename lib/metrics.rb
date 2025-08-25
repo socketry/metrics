@@ -9,4 +9,7 @@ require_relative "metrics/tags"
 
 # @namespace
 module Metrics
+	if self.enabled?
+		Config::DEFAULT.prepare
+	end
 end
