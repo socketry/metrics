@@ -1,6 +1,6 @@
 # Releases
 
-## Unreleased
+## v0.14.0
 
   - Don't call `prepare` in `metrics/provider.rb`. It can cause circular loading warnings.
 
