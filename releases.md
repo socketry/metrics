@@ -1,6 +1,6 @@
 # Releases
 
-## Unreleased
+## v0.15.0
 
   - Add `into = nil` parameter to `Metrics::Tags.normalize(tags, into = nil)` to allow reusing an existing array.
 

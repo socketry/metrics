@@ -23,6 +23,10 @@ Please see the [project documentation](https://socketry.github.io/metrics/) for 
 
 Please see the [project releases](https://socketry.github.io/metrics/releases/index) for all releases.
 
+### v0.15.0
+
+  - Add `into = nil` parameter to `Metrics::Tags.normalize(tags, into = nil)` to allow reusing an existing array.
+
 ### v0.14.0
 
   - Don't call `prepare` in `metrics/provider.rb`. It can cause circular loading warnings.
