@@ -1,5 +1,9 @@
 # Releases
 
+## Unreleased
+
+  - Add `into = nil` parameter to `Metrics::Tags.normalize(tags, into = nil)` to allow reusing an existing array.
+
 ## v0.14.0
 
   - Don't call `prepare` in `metrics/provider.rb`. It can cause circular loading warnings.

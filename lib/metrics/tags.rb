@@ -5,14 +5,22 @@
 
 module Metrics
 	module Tags
-		def self.normalize(tags)
-			return nil unless tags&.any?
+		def self.normalize(tags, into = nil)
+			return into unless tags&.any?
 			
-			if tags.is_a?(Hash)
-				tags = tags.map{|key, value| "#{key}:#{value}"}
+			into ||= []
+			
+			if tags.is_a?(Array)
+				into.concat(tags)
+			else
+				tags.each do |key, value|
+					if value
+						into << "#{key}:#{value}"
+					end
+				end
 			end
 			
-			return Array(tags)
+			return into
 		end
 	end
 end
