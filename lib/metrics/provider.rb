@@ -14,21 +14,11 @@ module Metrics
 	module Provider
 	end
 	
-	# A module which contains tracing specific wrappers.
-	module Singleton
-		def metrics_provider
-			@metrics_provider ||= Module.new
-		end
-	end
-	
-	private_constant :Singleton
-	
 	# Bail out if there is no backend configured.
 	if self.enabled?
 		# Extend the specified class in order to emit traces.
 		def self.Provider(klass, &block)
-			klass.extend(Singleton)
-			provider = klass.metrics_provider
+			provider = Module.new
 			klass.prepend(provider)
 			
 			provider.module_exec(&block) if block_given?

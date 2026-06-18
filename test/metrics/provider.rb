@@ -14,6 +14,8 @@ describe Metrics::Provider do
 	
 	it "works without a block" do
 		provider = Metrics::Provider(my_class)
-		expect(provider).to be_equal(my_class.metrics_provider)
+		
+		expect(provider).to be_a(Module)
+		expect(my_class.ancestors).to be(:include?, provider)
 	end
 end
