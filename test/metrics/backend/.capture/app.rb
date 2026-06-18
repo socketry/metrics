@@ -8,12 +8,14 @@ class App
 	end
 end
 
-Metrics::Provider(App) do
-	MY_METRIC = Metrics.metric(:my_metric, :gauge, description: "My metric", unit: "seconds")
-	
-	def call
-		MY_METRIC.emit(1, tags: ['environment:test'])
+class App
+	Metrics::Provider(self) do
+		MY_METRIC = Metrics.metric(:my_metric, :gauge, description: "My metric", unit: "seconds")
 		
-		super
+		def call
+			MY_METRIC.emit(1, tags: ['environment:test'])
+			
+			super
+		end
 	end
 end
